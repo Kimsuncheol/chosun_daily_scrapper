@@ -1,0 +1,24 @@
+name: Hourly article collection
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hourly-article-collection
+  cancel-in-progress: false
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Wake API and collect articles
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          SCRAPE_TOKEN: ${{ secrets.SCRAPE_TOKEN }}
+        run: python scripts/trigger_scrape.py
