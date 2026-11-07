@@ -168,3 +168,14 @@ For schema changes, run `flask --app wsgi db migrate -m 'Describe change'`, insp
 the generated migration, then run `flask --app wsgi db upgrade`. Every endpoint
 change must include updated generated OpenAPI and the endpoint table above.
 Repository engineering rules are in [AGENTS.md](AGENTS.md).
+
+## Browser test website
+
+Open `http://localhost:8000/` after starting Flask. The HTML explorer supports
+article search, publication filters, pagination, article details, health checks,
+collection runs, and a raw JSON response inspector. Enter `SCRAPE_TOKEN` to use
+collection controls; the page does not persist it in browser storage.
+
+| Method | Path | Behavior | Access |
+| --- | --- | --- | --- |
+| GET | `/` | HTML API test website | Public |

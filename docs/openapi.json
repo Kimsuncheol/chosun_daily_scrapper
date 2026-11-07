@@ -214,6 +214,22 @@
   },
   "openapi": "3.0.3",
   "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Open the browser-based API test website.",
+        "tags": [
+          "health"
+        ]
+      }
+    },
     "/api/v1/articles": {
       "get": {
         "description": "Date bounds require a timezone. Unknown publication dates appear last.\nSearch matches literal title or description text, case insensitively.",

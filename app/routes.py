@@ -158,3 +158,13 @@ class Health(MethodView):
             db.session.rollback()
             return {"status": "unavailable"}, 503
         return {"status": "ok"}
+
+
+@health.route("/")
+class Explorer(MethodView):
+    @health.response(200, content_type="text/html")
+    def get(self):
+        """Open the browser-based API test website."""
+        from flask import make_response, render_template
+
+        return make_response(render_template("index.html"))
